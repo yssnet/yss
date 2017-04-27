@@ -3,7 +3,7 @@
 import re
 import time
 import os
-from multiprocessing import Process
+from multiprocessing import Process as pro
 
 class ctr_to_csv(object):
     '''ctr to csv'''
@@ -152,11 +152,9 @@ if __name__ == '__main__':
         data_file_name = ''.join(file.split('/')[-1][:14].lstrip('A').split('.'))
         with open(file,'r') as f:
             for line in f:
-                csv.rule(line)
-            #pr.create_file(csv.file_list,csv_file_dir,data_file_name)
+                #csv.rule(line)
+                p = pro(target=csv.rule, args=(line,))
+                p.start()
+                p.join()
             pr.write_csv_data(csv.csv_list,csv_file_dir,data_file_name)
-
-
-
-
 
