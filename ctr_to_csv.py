@@ -152,9 +152,7 @@ if __name__ == '__main__':
         data_file_name = ''.join(file.split('/')[-1][:14].lstrip('A').split('.'))
         with open(file,'r') as f:
             for line in f:
-                #csv.rule(line)
-                p = pro(target=csv.rule, args=(line,))
-                p.start()
-                p.join()
+                csv.rule(line)
+                #p = pro(target=csv.rule, args=(line,))
             pr.write_csv_data(csv.csv_list,csv_file_dir,data_file_name)
 
